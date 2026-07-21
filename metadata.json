@@ -1,0 +1,6 @@
+{
+  "name": "Sikusi Believers Assemblies",
+  "description": "A comprehensive Church Management System and fellowship portal for Sikusi Believers-Message of the Hour Assemblies.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
