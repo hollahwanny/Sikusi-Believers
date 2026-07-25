@@ -37,14 +37,14 @@ export default function Footer({ activeTab, onNavigate }: FooterProps) {
         {/* Social media connections */}
         <div className="flex justify-center gap-6" id="footer-socials">
           <a
-            href="mailto:healerblessing@gmail.com"
+            href="mailto:messageofthehoursikusibeliever@gmail.com"
             className="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-850 flex items-center justify-center text-zinc-400 hover:text-amber-400 hover:border-amber-500/40 transition-all cursor-pointer"
             title="Gmail"
           >
             <Mail className="w-5 h-5" />
           </a>
           <a
-            href="https://youtube.com"
+            href="https://www.youtube.com/@messageofthehourassbls_Sikusi"
             target="_blank"
             rel="noopener noreferrer"
             className="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-850 flex items-center justify-center text-zinc-400 hover:text-amber-400 hover:border-amber-500/40 transition-all cursor-pointer"
