@@ -99,7 +99,7 @@ async function startServer() {
     });
 
     app.use(vite.middlewares);
-    app.get('*', async (req, res, next) => {
+    app.get(/^\/(?!api\/).*/, async (req, res, next) => {
       try {
         const indexHtml = await fs.readFile(path.join(process.cwd(), 'index.html'), 'utf8');
         res.status(200).set({ 'Content-Type': 'text/html; charset=utf-8' }).end(indexHtml);
@@ -110,7 +110,7 @@ async function startServer() {
   } else {
     const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath));
-    app.get('*', (req, res) => {
+    app.get(/^\/(?!api\/).*/, (req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));
     });
   }
