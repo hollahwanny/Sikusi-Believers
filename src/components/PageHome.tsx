@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { 
   ArrowRight, Calendar, HeartHandshake, BookOpen, MessageSquare, 
@@ -94,7 +95,15 @@ export default function PageHome({ onNavigate, featuredEvent, featuredSermon, la
   const sundayAudioUrl = latestSundaySermon?.audioUrl || FALLBACK_AUDIO_URL;
 
   return (
-    <div className="space-y-16">
+    <>
+      <Helmet>
+        <title>Home | Sikusi Believers</title>
+        <meta
+          name="description"
+          content="Welcome to Sikusi Believers - Message of the Hour Assemblies, a Christ-centered fellowship in Bungoma County, Kenya."
+        />
+      </Helmet>
+      <div className="space-y-16">
       {/* Hidden Audio Elements */}
       <audio
         ref={sundayAudioRef}
@@ -109,7 +118,7 @@ export default function PageHome({ onNavigate, featuredEvent, featuredSermon, la
         <div className="absolute inset-0 z-0">
           <img
             src={heroImage}
-            alt="Majestic Eagle"
+            alt="Sikusi Believers worship service banner"
             className="w-full h-full object-cover opacity-35 scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0c] via-[#0b0b0c]/50 to-transparent" />
@@ -289,6 +298,7 @@ export default function PageHome({ onNavigate, featuredEvent, featuredSermon, la
         </blockquote>
         <cite className="block text-amber-400 font-sans text-sm font-medium mt-2">— Matthew 24:28</cite>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

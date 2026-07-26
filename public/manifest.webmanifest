@@ -1,0 +1,21 @@
+{
+  "name": "Sikusi Believers",
+  "short_name": "Sikusi",
+  "description": "Sikusi Believers - Message of the Hour Assemblies church website",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0b0c",
+  "theme_color": "#0b0b0c",
+  "icons": [
+    {
+      "src": "/assets/logo-BT8Oa4GB.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/assets/logo-BT8Oa4GB.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

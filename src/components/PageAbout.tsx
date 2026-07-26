@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { BookOpen, Compass, ShieldCheck, Heart, ExternalLink, Award } from 'lucide-react';
 
@@ -42,7 +43,15 @@ export default function PageAbout() {
   ];
 
   return (
-    <div className="space-y-16">
+    <>
+      <Helmet>
+        <title>About Us | Message of the Hour Assemblies - Sikusi Believers</title>
+        <meta
+          name="description"
+          content="Learn about Message of the Hour Assemblies - Sikusi Believers, our foundation, mission, vision, and fellowship."
+        />
+      </Helmet>
+      <div className="space-y-16">
       {/* Introduction Header */}
       <section className="text-center max-w-3xl mx-auto space-y-4" id="about-intro">
         <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest">About the assembly</p>
@@ -61,7 +70,7 @@ export default function PageAbout() {
         <div className="md:col-span-5 relative group rounded-2xl overflow-hidden aspect-[4/5] border border-zinc-800">
           <img
             src={pastorImage}
-            alt="Pst. Maurice"
+            alt="Pastor Maurice Wanyonyi of Sikusi Believers"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
@@ -105,7 +114,7 @@ export default function PageAbout() {
             <div className="h-48 overflow-hidden relative">
               <img
                 src={pillar.image}
-                alt={pillar.title}
+                alt={`Illustration for ${pillar.title} at Sikusi Believers`}
                 className="w-full h-full object-cover opacity-60"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0c] to-transparent" />
@@ -155,6 +164,7 @@ export default function PageAbout() {
           Open Website <ExternalLink className="w-4 h-4" />
         </a>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

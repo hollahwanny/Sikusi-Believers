@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Phone, MessageSquare, Heart, Shield, Send, Check, Mail } from 'lucide-react';
 import { PrayerRequest } from '../types';
 
@@ -37,7 +38,15 @@ export default function PageContact({ prayerRequests, onAddPrayerRequest, onIncr
   const activeRequests = prayerRequests.slice(0, 4); // Show top 4 latest
 
   return (
-    <div className="space-y-12">
+    <>
+      <Helmet>
+        <title>Contact Us | Message of the Hour Assemblies - Sikusi Believers</title>
+        <meta
+          name="description"
+          content="Contact Message of the Hour Assemblies - Sikusi Believers for prayer requests, fellowship, or visits in Bungoma County, Kenya."
+        />
+      </Helmet>
+      <div className="space-y-12">
       {/* Introduction Header */}
       <section className="text-center max-w-2xl mx-auto space-y-4" id="contact-intro">
         <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest">We would love to hear from you</p>
@@ -214,6 +223,7 @@ export default function PageContact({ prayerRequests, onAddPrayerRequest, onIncr
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

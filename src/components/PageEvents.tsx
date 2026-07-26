@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Calendar, MapPin, Tag, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Event } from '../types';
 
@@ -32,7 +33,15 @@ export default function PageEvents({ events }: PageEventsProps) {
   };
 
   return (
-    <div className="space-y-10">
+    <>
+      <Helmet>
+        <title>Events | Message of the hour Assemblies - Sikusi Believers</title>
+        <meta
+          name="description"
+          content="View upcoming church events, fellowship gatherings, and special services hosted by Sikusi Believers."
+        />
+      </Helmet>
+      <div className="space-y-10">
       {/* Intro section */}
       <section className="text-center max-w-2xl mx-auto space-y-4" id="events-intro">
         <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest">Upcoming Gatherings</p>
@@ -76,7 +85,7 @@ export default function PageEvents({ events }: PageEventsProps) {
               <div className="relative h-48 overflow-hidden bg-zinc-950 shrink-0">
                 <img
                   src={event.imageUrl || DEFAULT_EVENT_IMAGE}
-                  alt={event.name}
+                  alt={`Event image for ${event.name}`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80"
                 />
                 <div className="absolute top-4 left-4 bg-zinc-950/85 backdrop-blur-md text-amber-400 border border-zinc-800 text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md">
@@ -158,6 +167,7 @@ export default function PageEvents({ events }: PageEventsProps) {
           </button>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 }

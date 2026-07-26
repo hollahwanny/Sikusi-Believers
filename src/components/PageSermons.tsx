@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Search, Play, Pause, Disc, BookOpen, Clock, Heart, Volume2, VolumeX } from 'lucide-react';
 import { Sermon } from '../types';
 
@@ -124,7 +125,15 @@ export default function PageSermons({ sermons }: PageSermonsProps) {
   };
 
   return (
-    <div className="space-y-10">
+    <>
+      <Helmet>
+        <title>Sermons | Sikusi Believers</title>
+        <meta
+          name="description"
+          content="Browse sermons and teachings from Sikusi Believers - Message of the Hour Assemblies and listen to the end-time message."
+        />
+      </Helmet>
+      <div className="space-y-10">
       {/* Introduction Header */}
       <section className="text-center max-w-2xl mx-auto space-y-4" id="sermons-intro">
         <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest">Sermon Archives</p>
@@ -325,6 +334,7 @@ export default function PageSermons({ sermons }: PageSermonsProps) {
           </button>
         </section>
       )}
-    </div>
+      </div>
+    </>
   );
 }

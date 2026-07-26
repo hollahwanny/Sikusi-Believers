@@ -39,7 +39,7 @@ export default function Header({ activeTab, onNavigate }: HeaderProps) {
             <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-amber-500/80 group-hover:scale-105 transition-all duration-300">
               <img
                 src={logoImage}
-                alt="Sikusi Logo"
+                alt="Sikusi Believers church logo"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
