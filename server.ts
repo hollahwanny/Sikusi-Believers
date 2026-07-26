@@ -1,4 +1,5 @@
 import express from 'express';
+import fs from 'fs/promises';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
 
@@ -96,7 +97,16 @@ async function startServer() {
       server: { middlewareMode: true },
       appType: 'spa',
     });
+
     app.use(vite.middlewares);
+    app.get('*', async (req, res, next) => {
+      try {
+        const indexHtml = await fs.readFile(path.join(process.cwd(), 'index.html'), 'utf8');
+        res.status(200).set({ 'Content-Type': 'text/html; charset=utf-8' }).end(indexHtml);
+      } catch (error) {
+        next(error);
+      }
+    });
   } else {
     const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath));
