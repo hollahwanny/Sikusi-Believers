@@ -148,8 +148,35 @@ const INITIAL_DONATIONS: DonationLog[] = [
   }
 ];
 
+const VALID_TABS: ActiveTab[] = ['home', 'about', 'events', 'sermons', 'contact', 'calendar', 'giving', 'admin'];
+
+const getTabFromPath = (pathname: string): ActiveTab => {
+  const trimmedPath = pathname.replace(/^\/+|\/+$/g, '');
+  if (!trimmedPath || trimmedPath === 'home') return 'home';
+  return VALID_TABS.includes(trimmedPath as ActiveTab) ? (trimmedPath as ActiveTab) : 'home';
+};
+
+const getPathForTab = (tab: ActiveTab) => (tab === 'home' ? '/' : `/${tab}`);
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState<ActiveTab>('home');
+  const [activeTab, setActiveTab] = useState<ActiveTab>(() => getTabFromPath(window.location.pathname));
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setActiveTab(getTabFromPath(window.location.pathname));
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const handleNavigate = (tab: ActiveTab) => {
+    setActiveTab(tab);
+    const nextPath = getPathForTab(tab);
+    if (window.location.pathname !== nextPath) {
+      window.history.pushState({}, '', nextPath);
+    }
+  };
 
   // State arrays populated from localStorage or fallback defaults
   const [events, setEvents] = useState<Event[]>(() => {
@@ -373,7 +400,7 @@ export default function App() {
     <div className="min-h-screen flex flex-col justify-between" id="app-root-layout">
       
       {/* Universal header navigation */}
-      <Header activeTab={activeTab} onNavigate={setActiveTab} />
+      <Header activeTab={activeTab} onNavigate={handleNavigate} />
 
       {/* Main viewport area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-6 py-10" id="main-content-viewport">
@@ -387,7 +414,7 @@ export default function App() {
           >
             {activeTab === 'home' && (
               <PageHome
-                onNavigate={setActiveTab}
+                onNavigate={handleNavigate}
                 featuredEvent={latestEvent}
                 featuredSermon={latestSermon}
                 latestSundaySermon={sermons.find(s => s.category === 'Sunday') || null}
@@ -423,7 +450,7 @@ export default function App() {
       </main>
 
       {/* Universal footer */}
-      <Footer activeTab={activeTab} onNavigate={setActiveTab} />
+      <Footer activeTab={activeTab} onNavigate={handleNavigate} />
       
     </div>
   );
